@@ -369,7 +369,7 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
       <div class="nav-divider"></div>
       <a href="https://x.com/monna_memecoin" target="_blank" rel="noreferrer" class="nav-link" style="font-size:18px;padding:8px 10px">𝕏</a>
       <a href="https://t.me/monnatheskunk" target="_blank" rel="noreferrer" class="nav-link" style="font-size:18px;padding:8px 10px">✈</a>
-      <a href="https://nad.fun" target="_blank" rel="noreferrer" class="nav-buy-btn">BUY NOW</a>
+      <a href="https://nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777" target="_blank" rel="noreferrer" class="nav-buy-btn">BUY NOW</a>
     </div>
     <button class="hamburger" id="hamburger-btn" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -387,7 +387,7 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
       <a href="https://t.me/monnatheskunk" target="_blank" rel="noreferrer" class="mobile-link" style="display:inline-block;width:auto">✈ Telegram</a>
     </div>
     <div style="padding:8px 24px 4px">
-      <a href="https://nad.fun" target="_blank" rel="noreferrer" style="display:block;text-align:center;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-radius:12px;padding:14px;font-family:'Orbitron',sans-serif;font-weight:800;font-size:15px;text-decoration:none;letter-spacing:.06em">🚀 BUY ON NAD.FUN</a>
+      <a href="https://nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777" target="_blank" rel="noreferrer" style="display:block;text-align:center;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-radius:12px;padding:14px;font-family:'Orbitron',sans-serif;font-weight:800;font-size:15px;text-decoration:none;letter-spacing:.06em">🚀 BUY ON NAD.FUN</a>
     </div>
   </div>
 </nav>
@@ -402,9 +402,9 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
         <span class="hero-badge-dot"></span>
         <span class="hero-badge-text">WORLD CUP 2026 · MONAD CHAIN</span>
       </div>
-      <a href="https://nad.fun" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.25);border:1px solid rgba(168,85,247,.5);border-radius:100px;padding:6px 16px;text-decoration:none;backdrop-filter:blur(8px)">
+      <a href="https://nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.25);border:1px solid rgba(168,85,247,.5);border-radius:100px;padding:6px 16px;text-decoration:none;backdrop-filter:blur(8px)">
         <span style="font-size:12px">🚀</span>
-        <span style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:13px;color:#e9d5ff;letter-spacing:.08em">LAUNCHING ON NAD.FUN</span>
+        <span style="font-family:'Exo 2',sans-serif;font-weight:700;font-size:13px;color:#e9d5ff;letter-spacing:.08em">BUY ON NAD.FUN</span>
       </a>
     </div>
     <h1 class="hero-title" id="hero-title">$MONSKUNK</h1>
@@ -413,13 +413,13 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
       <img src="https://i.imgur.com/WqtqQXr.png" alt="MonnaTheSkunk" class="hero-mascot" style="animation:floatBob 3.5s ease-in-out infinite" />
     </div>
     <p class="hero-desc">The skunkiest memecoin on Monad Chain. Built for the beautiful game, fueled by pure degen energy. World Cup 2026 or bust — we score or we die trying.</p>
-    <div class="contract-badge">
-      <span class="contract-label">CONTRACT:</span>
-      <span class="contract-value">COMING SOON</span>
-      <span style="font-size:12px;color:#a78bfa">📋</span>
+    <div class="contract-badge" onclick="copyCA()" title="Click to copy">
+      <span class="contract-label">CA:</span>
+      <span class="contract-value" id="ca-display">0xBb27...7777</span>
+      <span style="font-size:12px;color:#a78bfa" id="ca-copy-icon">📋</span>
     </div>
     <div class="hero-btns">
-      <a href="https://nad.fun" target="_blank" rel="noreferrer" class="btn-primary" style="animation:pulseGlow 2s ease-in-out infinite">BUY ON NAD.FUN</a>
+      <a href="https://nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777" target="_blank" rel="noreferrer" class="btn-primary" style="animation:pulseGlow 2s ease-in-out infinite">BUY ON NAD.FUN</a>
       <a href="#about" class="btn-outline">JOIN THE ARMY</a>
     </div>
     <div class="hero-socials">
@@ -543,10 +543,10 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
     <div class="steps-grid">
       <div class="step-card reveal-left"><div class="step-num">01</div><h3 class="step-title">Get a Monad Wallet</h3><p class="step-body">Download MetaMask or any EVM-compatible wallet. Add the Monad Chain network. You're now ready to receive $MONSKUNK.</p></div>
       <div class="step-card reveal"><div class="step-num">02</div><h3 class="step-title">Buy MON Tokens</h3><p class="step-body">Bridge or buy MON tokens (Monad's native token). You'll need MON to pay for gas and to swap for $MONSKUNK.</p></div>
-      <div class="step-card reveal-left"><div class="step-num">03</div><h3 class="step-title">Go to NAD.FUN</h3><p class="step-body">Head to nad.fun — the launch platform for $MONSKUNK. Connect your wallet and find $MONSKUNK once it goes live.</p><a href="https://nad.fun" target="_blank" rel="noreferrer" class="step-action">OPEN NAD.FUN</a></div>
+      <div class="step-card reveal-left"><div class="step-num">03</div><h3 class="step-title">Buy on NAD.FUN</h3><p class="step-body">Head to nad.fun — connect your wallet and swap MON for $MONSKUNK. Token is LIVE now!</p><a href="https://nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777" target="_blank" rel="noreferrer" class="step-action">BUY $MONSKUNK</a></div>
       <div class="step-card reveal-right"><div class="step-num">04</div><h3 class="step-title">Swap &amp; HODL</h3><p class="step-body">Enter the amount of MON you want to swap. Confirm the transaction, receive $MONSKUNK, and join the Skunk Army.</p></div>
     </div>
-    <div class="howtobuy-cta"><a href="https://nad.fun" target="_blank" rel="noreferrer" class="btn-primary" style="font-size:18px;padding:18px 48px;animation:pulseGlow 2s ease-in-out infinite">APE INTO $MONSKUNK</a></div>
+    <div class="howtobuy-cta"><a href="https://nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777" target="_blank" rel="noreferrer" class="btn-primary" style="font-size:18px;padding:18px 48px;animation:pulseGlow 2s ease-in-out infinite">APE INTO $MONSKUNK</a></div>
   </div>
 </section>
 
@@ -689,7 +689,7 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
     <div class="wp-download reveal">
       <div class="wp-download-title">📄 Full Whitepaper PDF</div>
       <p class="wp-download-sub">Read the complete $MONSKUNK whitepaper for in-depth information on tokenomics, roadmap, technology, and vision.</p>
-      <a href="/whitepaper.pdf" download="MONSKUNK_Whitepaper.pdf" class="wp-download-btn">
+      <a href="./whitepaper.pdf" download="MONSKUNK_Whitepaper.pdf" class="wp-download-btn">
         <span>📥</span> DOWNLOAD WHITEPAPER PDF
       </a>
     </div>
@@ -863,7 +863,7 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
     </div>
     <div class="faq-list">
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What is $MONSKUNK?</span><span class="faq-icon">+</span></button><div class="faq-a">$MONSKUNK (MonnaTheSkunk) is a community-driven memecoin launched on Monad Chain, inspired by the FIFA World Cup 2026. It combines football passion with degen crypto culture for the most fun memecoin experience on Monad.</div></div>
-      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How do I buy $MONSKUNK?</span><span class="faq-icon">+</span></button><div class="faq-a">Get a MetaMask wallet, add the Monad Chain network, acquire MON tokens for gas, then visit nad.fun and swap MON for $MONSKUNK once it goes live. Join our Telegram for launch alerts!</div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How do I buy $MONSKUNK?</span><span class="faq-icon">+</span></button><div class="faq-a">Get a MetaMask wallet, add the Monad Chain network, acquire MON tokens for gas, then visit nad.fun and swap MON for $MONSKUNK. Token is LIVE — buy now at nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777!</div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What is the total supply?</span><span class="faq-icon">+</span></button><div class="faq-a">The total supply is 1,000,000,000 (1 billion) $MONSKUNK tokens. 80% goes to liquidity (locked), 10% to marketing, 5% to team, and 5% to airdrop/community rewards.</div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Is $MONSKUNK audited?</span><span class="faq-icon">+</span></button><div class="faq-a">$MONSKUNK is committed to a full third-party smart contract audit before launch. The audit report will be published publicly on this website. We do not launch until the audit is complete. See the Audit Plan section for the full timeline.</div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Is the liquidity locked?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes. 80% of the token supply is allocated to locked liquidity. LP tokens will be time-locked on-chain and verifiable by anyone. This ensures long-term stability and protects the Skunk Army.</div></div>
@@ -882,7 +882,7 @@ body{background:#0a0014;color:#f5e6ff;font-family:'Inter',sans-serif;overflow-x:
       <div class="footer-cta-btns">
         <a href="https://x.com/monna_memecoin" target="_blank" rel="noreferrer" class="footer-social-btn">𝕏 Twitter / X</a>
         <a href="https://t.me/monnatheskunk" target="_blank" rel="noreferrer" class="footer-social-btn">✈ Telegram</a>
-        <a href="https://nad.fun" target="_blank" rel="noreferrer" class="footer-social-btn" style="background:linear-gradient(135deg,#7c3aed,#a855f7);border-color:transparent">🚀 Buy on NAD.FUN</a>
+        <a href="https://nad.fun/tokens/0xBb2715564b192E44D2ED8a73fE79852052DF7777" target="_blank" rel="noreferrer" class="footer-social-btn" style="background:linear-gradient(135deg,#7c3aed,#a855f7);border-color:transparent">🚀 Buy on NAD.FUN</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -986,6 +986,23 @@ window.addEventListener('scroll',()=>{
   }
   draw();
 })();
+
+// ── Copy CA ──
+function copyCA(){
+  const CA='0xBb2715564b192E44D2ED8a73fE79852052DF7777';
+  navigator.clipboard.writeText(CA).then(function(){
+    const el=document.getElementById('ca-display');
+    const icon=document.getElementById('ca-copy-icon');
+    if(el){el.textContent='Copied!';}
+    if(icon){icon.textContent='✅';}
+    setTimeout(function(){
+      if(el){el.textContent='0xBb27...7777';}
+      if(icon){icon.textContent='📋';}
+    },2000);
+  }).catch(function(){
+    prompt('Copy this CA:','0xBb2715564b192E44D2ED8a73fE79852052DF7777');
+  });
+}
 
 // ── FAQ ──
 function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
