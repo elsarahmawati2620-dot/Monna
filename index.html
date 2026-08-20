@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uWOOF — Unique On-chain Woofs | $uWOOF</title>
+  <meta name="description" content="uWOOF ($uWOOF) — A limited generative collection of pixel woofs. Every whole $uWOOF token mints one unique on-chain dog. Buy $uWOOF, get a Woof." />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #12121a;
+      --lime: #b8ff3c;
+      --lime-dark: #8fd100;
+      --pink: #ff6bcb;
+      --orange: #ff9f43;
+      --cyan: #00f5d4;
+      --purple: #9b5de5;
+      --blue: #4cc9f0;
+      --text: #f0f0f5;
+      --text-muted: #a0a0b0;
+      --border: #2a2a3a;
+      --glow: 0 0 20px rgba(184, 255, 60, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Pixel font utility */
+    .pixel {
+      font-family: 'Press Start 2P', cursive;
+      letter-spacing: 1px;
+    }
+
+    /* Animated background particles */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--lime);
+      border-radius: 1px;
+      opacity: 0.3;
+      animation: float-up linear infinite;
+    }
+
+    @keyframes float-up {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.4; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--lime);
+      box-shadow: 0 0 30px rgba(184, 255, 60, 0.15);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--lime);
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      text-shadow: 0 0 12px var(--lime);
+      transform: scale(1.05);
+    }
+
+    .logo img {
+      width: 36px;
+      height: 36px;
+      image-rendering: pixelated;
+      border-radius: 6px;
+      border: 2px solid var(--lime);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--lime);
+      text-shadow: 0 0 8px var(--lime);
+    }
+
+    .nav-links a.buy-link {
+      background: var(--lime);
+      color: #0a0a0f;
+      padding: 0.5rem 0.9rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .nav-links a.buy-link:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: var(--glow);
+    }
+
+    .nav-links a.x-link {
+      background: transparent;
+      color: var(--lime);
+      border: 2px solid var(--lime);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a.x-link:hover {
+      background: rgba(184, 255, 60, 0.15);
+      box-shadow: 0 0 12px rgba(184, 255, 60, 0.3);
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 2px solid var(--lime);
+      color: var(--lime);
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.7rem;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .hero-image {
+      width: min(320px, 80vw);
+      height: auto;
+      image-rendering: pixelated;
+      border-radius: 16px;
+      border: 4px solid var(--lime);
+      box-shadow:
+        0 0 0 4px #0a0a0f,
+        0 0 40px rgba(184, 255, 60, 0.5),
+        0 0 80px rgba(184, 255, 60, 0.2);
+      animation: hero-float 4s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    @keyframes hero-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: -30px;
+      background: radial-gradient(circle, rgba(184, 255, 60, 0.25) 0%, transparent 70%);
+      z-index: -1;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    .hero-badge {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.55rem;
+      color: var(--lime);
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(1.4rem, 5vw, 2.4rem);
+      line-height: 1.4;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(90deg, var(--lime), var(--cyan), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+    }
+
+    .hero p {
+      max-width: 540px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.65rem;
+      padding: 0.9rem 1.4rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--lime);
+      color: #0a0a0f;
+      box-shadow: 0 0 20px rgba(184, 255, 60, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: #fff;
+      box-shadow: 0 0 30px rgba(184, 255, 60, 0.7);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--lime);
+      border: 2px solid var(--lime);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(184, 255, 60, 0.15);
+      box-shadow: 0 0 15px rgba(184, 255, 60, 0.3);
+    }
+
+    /* Sections */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      text-align: center;
+      margin-bottom: 0.75rem;
+      color: var(--lime);
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Collection Grid */
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+    }
+
+    .nft-card {
+      background: var(--bg-card);
+      border: 3px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem;
+      width: 100%;
+      max-width: 180px;
+      text-align: center;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nft-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.05));
+      pointer-events: none;
+    }
+
+    .nft-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      border-color: var(--lime);
+      box-shadow: 0 15px 40px rgba(184, 255, 60, 0.25);
+    }
+
+    .nft-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      image-rendering: pixelated;
+      border-radius: 8px;
+      display: block;
+      background: #111;
+    }
+
+    .nft-id {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.55rem;
+      margin-top: 0.75rem;
+      color: var(--lime);
+    }
+
+    .nft-name {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Protocol / How it works */
+    .protocol-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .protocol-label {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.55rem;
+      color: var(--cyan);
+      letter-spacing: 3px;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .how-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .how-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--lime);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .how-card:hover {
+      border-color: var(--lime);
+      box-shadow: 0 0 30px rgba(184, 255, 60, 0.18);
+      transform: translateY(-6px);
+    }
+
+    .how-card:hover::after {
+      opacity: 1;
+    }
+
+    .how-num {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.35rem;
+      color: var(--lime);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .how-num span {
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .how-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.65rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .how-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    /* Gallery marquee */
+    .gallery-section {
+      overflow: hidden;
+      padding: 3rem 0;
+    }
+
+    .marquee {
+      display: flex;
+      gap: 1.5rem;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee img {
+      width: 120px;
+      height: 120px;
+      image-rendering: pixelated;
+      border-radius: 10px;
+      border: 3px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .marquee img:hover {
+      border-color: var(--pink);
+    }
+
+    /* Token info bar */
+    .token-bar {
+      background: linear-gradient(90deg, rgba(184,255,60,0.1), rgba(0,245,212,0.1), rgba(255,107,203,0.1));
+      border-top: 2px solid var(--lime);
+      border-bottom: 2px solid var(--lime);
+      padding: 1.25rem;
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6rem;
+      color: var(--lime);
+      letter-spacing: 1px;
+    }
+
+    /* Contract Address */
+    .ca-section {
+      position: relative;
+      z-index: 1;
+      padding: 1.5rem 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .ca-box {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      transition: border-color 0.3s ease;
+    }
+
+    .ca-box:hover {
+      border-color: var(--lime);
+    }
+
+    .ca-label {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.5rem;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .ca-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .ca-row code {
+      font-family: 'Inter', monospace;
+      font-size: 0.8rem;
+      color: var(--lime);
+      word-break: break-all;
+      background: rgba(184, 255, 60, 0.08);
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+    }
+
+    .ca-copy {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.5rem;
+      background: var(--lime);
+      color: #0a0a0f;
+      border: none;
+      padding: 0.55rem 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .ca-copy:hover {
+      background: #fff;
+      box-shadow: 0 0 15px rgba(184, 255, 60, 0.4);
+    }
+
+    .ca-copy.copied {
+      background: var(--cyan);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 2px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--lime);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-shadow: 0 0 8px var(--lime);
+    }
+
+    .footer-logo {
+      width: 48px;
+      height: 48px;
+      image-rendering: pixelated;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.98);
+        flex-direction: column;
+        padding: 1.5rem;
+        border-bottom: 2px solid var(--lime);
+        gap: 1.25rem;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 1.3rem;
+      }
+
+      .collection-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div id="particles"></div>
+
+  <nav>
+    <a href="#" class="logo">
+      <img src="images/logo.png" alt="uWOOF" />
+      uWOOF
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">MENU</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#collection">Collection</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#how">How it works</a>
+      <a href="https://utoken.gg/token/0xbc124f285d21a4d76e9f46078908c2b811adf533" target="_blank" rel="noopener" class="buy-link">Buy</a>
+      <a href="https://x.com/uwoof_rh" target="_blank" rel="noopener" class="x-link">X</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-image-wrap">
+      <div class="hero-glow"></div>
+      <img src="images/logo.png" alt="uWOOF Hero" class="hero-image" />
+    </div>
+    <div class="hero-badge">✦ LIMITED PIXEL COLLECTION ✦</div>
+    <h1>Unique Woofs.<br/>On-chain forever.</h1>
+    <p>
+      uWOOF is a generative pixel dog collection powered by $uWOOF.
+      Each whole token mints one unique on-chain Woof. Pure meme energy.
+      No suits. Just woofs.
+    </p>
+    <div class="hero-cta">
+      <a href="https://utoken.gg/token/0xbc124f285d21a4d76e9f46078908c2b811adf533" target="_blank" rel="noopener" class="btn btn-primary">Buy $uWOOF</a>
+      <a href="#collection" class="btn btn-secondary">View Collection</a>
+    </div>
+  </header>
+
+  <div class="token-bar">
+    $uWOOF &nbsp;•&nbsp; PIXEL WOOFS &nbsp;•&nbsp; ON-CHAIN &nbsp;•&nbsp; COMMUNITY OWNED
+  </div>
+
+  <!-- Contract Address -->
+  <div class="ca-section">
+    <div class="ca-box">
+      <span class="ca-label">CONTRACT ADDRESS</span>
+      <div class="ca-row">
+        <code id="caAddress">0xbc124f285d21a4d76e9f46078908c2b811adf533</code>
+        <button class="ca-copy" id="copyCa" title="Copy CA">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="collection" class="reveal">
+    <h2 class="section-title">The Collection</h2>
+    <p class="section-sub">10 unique pixel Woofs. Each one a different vibe. Collect them all.</p>
+    <div class="collection-grid">
+      <div class="nft-card">
+        <img src="images/5p55X3F.png" alt="uWOOF #1" />
+        <div class="nft-id">#1</div>
+        <div class="nft-name">Lime Woof</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/5qpiImM.png" alt="uWOOF #2" />
+        <div class="nft-id">#2</div>
+        <div class="nft-name">Mint Ghost</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/HjSO3U3.png" alt="uWOOF #3" />
+        <div class="nft-id">#3</div>
+        <div class="nft-name">Sky Pup</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/bJZzF0F.png" alt="uWOOF #4" />
+        <div class="nft-id">#4</div>
+        <div class="nft-name">Night Mint</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/B2W9kqN.png" alt="uWOOF #5" />
+        <div class="nft-id">#5</div>
+        <div class="nft-name">Pinky</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/BkIImt5.png" alt="uWOOF #6" />
+        <div class="nft-id">#6</div>
+        <div class="nft-name">Purple Paw</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/HEsI7Mz.png" alt="uWOOF #7" />
+        <div class="nft-id">#7</div>
+        <div class="nft-name">Shadow</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/s7URpLt.png" alt="uWOOF #8" />
+        <div class="nft-id">#8</div>
+        <div class="nft-name">Sunny</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/dzfJ73x.png" alt="uWOOF #9" />
+        <div class="nft-id">#9</div>
+        <div class="nft-name">Black Bone</div>
+      </div>
+      <div class="nft-card">
+        <img src="images/yAKrHAy.png" alt="uWOOF #10" />
+        <div class="nft-id">#10</div>
+        <div class="nft-name">Blush</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery-section reveal">
+    <h2 class="section-title" style="margin-bottom: 2rem;">Gallery</h2>
+    <div class="marquee">
+      <img src="images/5p55X3F.png" alt="Woof" />
+      <img src="images/5qpiImM.png" alt="Woof" />
+      <img src="images/HjSO3U3.png" alt="Woof" />
+      <img src="images/bJZzF0F.png" alt="Woof" />
+      <img src="images/B2W9kqN.png" alt="Woof" />
+      <img src="images/BkIImt5.png" alt="Woof" />
+      <img src="images/HEsI7Mz.png" alt="Woof" />
+      <img src="images/s7URpLt.png" alt="Woof" />
+      <img src="images/dzfJ73x.png" alt="Woof" />
+      <img src="images/yAKrHAy.png" alt="Woof" />
+      <!-- duplicate for seamless loop -->
+      <img src="images/5p55X3F.png" alt="Woof" />
+      <img src="images/5qpiImM.png" alt="Woof" />
+      <img src="images/HjSO3U3.png" alt="Woof" />
+      <img src="images/bJZzF0F.png" alt="Woof" />
+      <img src="images/B2W9kqN.png" alt="Woof" />
+      <img src="images/BkIImt5.png" alt="Woof" />
+      <img src="images/HEsI7Mz.png" alt="Woof" />
+      <img src="images/s7URpLt.png" alt="Woof" />
+      <img src="images/dzfJ73x.png" alt="Woof" />
+      <img src="images/yAKrHAy.png" alt="Woof" />
+    </div>
+  </section>
+
+  <section id="how" class="reveal">
+    <div class="protocol-header">
+      <span class="protocol-label">*PROTOCOL</span>
+      <h2 class="section-title">How a Woof is born</h2>
+      <p class="section-sub">From deploy to graduate — fully on-chain, no games.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">01 <span>DEPLOY</span></div>
+        <h3>Deploy</h3>
+        <p>Name, ticker $uWOOF, 5,000 supply, and curve were set permanently at launch. Collections use 18 decimals, so one whole token always backs one item.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">02 <span>LAYERS</span></div>
+        <h3>Upload layers</h3>
+        <p>Art goes on-chain across several transactions. Once trading opens, the layer set is locked. Metadata cannot change later.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">03 <span>REVEAL</span></div>
+        <h3>Buy &amp; reveal</h3>
+        <p>A buy mints one Woof per whole $uWOOF token. Traits reveal layer by layer from a later block, so rarity cannot be gamed at buy time.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">04 <span>GRADUATE</span></div>
+        <h3>Graduate</h3>
+        <p>At the ETH target, anyone can graduate. Liquidity moves to Uniswap and the LP key is burned. Each Woof also trades on its own card.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="images/logo.png" alt="uWOOF" class="footer-logo" />
+    <p class="pixel" style="font-size:0.7rem; color:var(--lime); margin-bottom:0.75rem;">uWOOF</p>
+    <p>$uWOOF • Pixel Woofs • Community Owned</p>
+    <p style="margin-top:1rem; display:flex; gap:1.25rem; justify-content:center; flex-wrap:wrap;">
+      <a href="https://utoken.gg/token/0xbc124f285d21a4d76e9f46078908c2b811adf533" target="_blank" rel="noopener">Buy $uWOOF</a>
+      <a href="https://x.com/uwoof_rh" target="_blank" rel="noopener">@uwoof_rh on X</a>
+    </p>
+    <p style="margin-top:1.5rem; font-size:0.75rem; opacity:0.6;">© 2026 uWOOF. All rights reserved. Not financial advice.</p>
+  </footer>
+
+  <script>
+    // Particles
+    const particlesContainer = document.getElementById('particles');
+    const colors = ['#b8ff3c', '#ff6bcb', '#00f5d4', '#ff9f43', '#9b5de5'];
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.animationDuration = (8 + Math.random() * 12) + 's';
+      p.style.animationDelay = Math.random() * 10 + 's';
+      p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
+      particlesContainer.appendChild(p);
+    }
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Copy CA
+    const copyBtn = document.getElementById('copyCa');
+    const caAddress = document.getElementById('caAddress');
+    if (copyBtn && caAddress) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(caAddress.textContent.trim()).then(() => {
+          copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy';
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
